@@ -381,3 +381,21 @@ class VertexesModel(SchemaInstancesModel):
 class EdgesModel(SchemaInstancesModel):
     """某EdgeType下边实例集"""
     schema_type = Const.EDGE
+
+
+@attr.s
+class SpaceConfigModel:
+
+    space_name = attr.ib(type=str)
+    max_vid_length = attr.ib(type=int, default=256)
+    vid_is_string_type = attr.ib(type=bool, default=True)
+    partition_num = attr.ib(type=int, default=10)
+    replica_factor = attr.ib(type=int, default=1)
+    comment = attr.ib(type=str, default='')
+    vid_type = attr.ib(type=str, init=False)
+
+    def __attrs_post_init__(self):
+        if self.vid_is_string_type and self.max_vid_length:
+            self.vid_type = 'FIXED_STRING({})'.format(self.max_vid_length)
+        else:
+            self.vid_type = 'INT'

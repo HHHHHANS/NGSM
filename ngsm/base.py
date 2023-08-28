@@ -272,6 +272,7 @@ class NDataTypes(EnumBase):
                 raise TypeError('required int but got {} instead'.format(type(value)))
 
 
+# Define the validator when pre-defined Nebula-type meet py-type
 NType2Validator = {
     NDataTypes.INT.value: validators.instance_of(int),
     NDataTypes.INT8.value: validators.instance_of(int),

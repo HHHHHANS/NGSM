@@ -185,6 +185,7 @@ class Create:
 
 
 class Delete:
+
     @classmethod
     def vertex(cls, schema: SchemaModel):
         pass

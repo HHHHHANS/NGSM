@@ -1,0 +1,2 @@
+nebula3-python>=3.1.0
+attrs>=21.4.0
